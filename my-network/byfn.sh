@@ -300,19 +300,23 @@ function replacePrivateKey() {
   cd crypto-config/peerOrganizations/org1.example.com/ca/
   PRIV_KEY=$(ls *_sk)
   cd "$CURRENT_DIR"
-  sed $OPTS "s/CA1_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-ca.yaml
+  sed $OPTS "s/SERVER_CA1_KEYFILE/${PRIV_KEY}/g" docker-compose-ca.yaml
   cd crypto-config/peerOrganizations/org2.example.com/ca/
   PRIV_KEY=$(ls *_sk)
   cd "$CURRENT_DIR"
-  sed $OPTS "s/CA2_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-ca.yaml
+  sed $OPTS "s/SERVER_CA2_KEYFILE/${PRIV_KEY}/g" docker-compose-ca.yaml
   cd crypto-config/peerOrganizations/org3.example.com/ca/
   PRIV_KEY=$(ls *_sk)
   cd "$CURRENT_DIR"
-  sed $OPTS "s/CA3_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-ca.yaml
+  sed $OPTS "s/SERVER_CA3_KEYFILE/${PRIV_KEY}/g" docker-compose-ca.yaml
   cd crypto-config/peerOrganizations/org4.example.com/ca/
   PRIV_KEY=$(ls *_sk)
   cd "$CURRENT_DIR"
-  sed $OPTS "s/CA4_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-ca.yaml
+  sed $OPTS "s/SERVER_CA4_KEYFILE/${PRIV_KEY}/g" docker-compose-ca.yaml
+  # If MacOSX, remove the temporary backup of the docker-compose file
+  if [ "$ARCH" == "Darwin" ]; then
+    rm docker-compose-ca.yamlt
+  fi
 }
 
 # We will use the cryptogen tool to generate the cryptographic material (x509 certs)

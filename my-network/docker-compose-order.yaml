@@ -26,10 +26,6 @@ services:
       file:   base/docker-compose-base.yaml
       service: orderer.example.com
     container_name: orderer.example.com
-    extra_hosts:
-      # - "peer0.org1.example.com:192.168.2.89"
-      # - "peer0.org4.example.com:192.168.2.222"
-      - "peer0.org3.example.com:192.168.2.47"
     networks:
       - byfn
 
